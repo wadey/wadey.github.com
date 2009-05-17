@@ -1,0 +1,22 @@
+body {
+	background-color: #141414;
+}
+
+h1 {
+	color: #fff;
+	text-align: center;
+}
+
+.block {
+	background-color: #000;
+	color: #fff;
+	width: 800px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.block h2 {
+	text-align: center;
+	padding-top: 70px;
+}

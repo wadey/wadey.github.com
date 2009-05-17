@@ -1,5 +1,6 @@
 body {
 	background-color: #141414;
+	font-family: helvetica,arial,sans-serif;
 }
 
 h1 {
@@ -14,6 +15,8 @@ h1 {
 	height: 200px;
 	margin-left: auto;
 	margin-right: auto;
+	border: 1px solid #333;
+	margin-bottom: 50px;
 }
 
 .block h2 {

@@ -24,10 +24,11 @@
   }
   */
   
+  var div;
   var div2;
   window.code_splash = {
     start: function() {
-      var div = $('#code .inner');
+      div = $('#code .inner');
       var pos = div.position();
       div.prepend("<div class='bits' style='left:"+(pos.left+5)+"px;top:"+(pos.top-15)+"px'></div>");
       div2 = div.find('.bits');
@@ -53,5 +54,13 @@
   
   $(document).ready(function() {
     window.code_splash.start();
+  })
+  
+  $(window).resize(function() {
+    if (div2 != null) {
+      var pos = div.position();
+      div2.css('left', (pos.left+5)+"px");
+      div2.css('top', (pos.top-15)+"px");
+    }
   })
 })();

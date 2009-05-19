@@ -27,10 +27,9 @@
   var div2;
   window.code_splash = {
     start: function() {
-      var div = $('#code');
+      var div = $('#code .inner');
       var pos = div.position();
-      //div.prepend("<div class='bits' style='height:300px;width:100px;float:left'></div>");
-            div.prepend("<div class='bits' style='color:#333;height:300px;width:200px;position:absolute;left:"+(pos.left+5)+"px;top:"+(pos.top+5)+"px'></div>");
+      div.prepend("<div class='bits' style='color:#333;height:300px;width:200px;position:absolute;left:"+(pos.left+5)+"px;top:"+(pos.top+5)+"px'></div>");
       div2 = div.find('.bits');
       
       //prep

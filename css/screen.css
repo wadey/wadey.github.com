@@ -33,13 +33,14 @@ h1 {
 	border: 1px solid #333;
 	margin-bottom: 25px;
 	font-family: "monaco", monospace;
+	cursor: pointer;
 }
 
 .block h2 {
 	text-align: center;
 	padding-top: 60px;
-	cursor: pointer;
 	z-index: 10;
+	position: relative;
 }
 
 .block h2 a {
@@ -48,9 +49,9 @@ h1 {
 }
 
 .bits {
-  height: 300px;
-  width: 200px;
+  height: 200px;
+  width: 590px;
   position: absolute;
-  color: #7187A8;
+  color: #333;
   font-size: 12px;
 }

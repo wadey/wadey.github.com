@@ -26,26 +26,36 @@
   
   var div;
   var div2;
+  var codeInterval;
+  var maxBits = 491;
   window.code_splash = {
     start: function() {
-      div = $('#code .inner');
+      var block = $('#code');
+      div = block.find('.inner');
       var pos = div.position();
-      div.prepend("<div class='bits' style='left:"+(pos.left+5)+"px;top:"+(pos.top-15)+"px'></div>");
+      div.prepend("<div class='bits' style='left:"+(pos.left+8)+"px;top:"+(pos.top-17)+"px'></div>");
       div2 = div.find('.bits');
       
       //prep
-      for (var i = 0; i < 100; ++i) {
+      for (var i = 0; i <= maxBits; ++i) {
         window.code_splash.animate();
       }
       
-      window.setInterval(function() {
+      block.mouseover(function() {
+        codeInterval = window.setInterval(function() {
+          window.code_splash.animate();
+        }, 100);
         window.code_splash.animate();
-      }, 100);
+      })
+      
+      block.mouseout(function() {
+        window.clearInterval(codeInterval);
+      })
     },
     
     animate: function() {
       var text = div2.text();
-      if (text.length > 200) {
+      if (text.length > maxBits * 2) {
         text = text.substring(2);
       }
       div2.text(text+' '+(Math.random() < 0.5 ? '0' : '1'))
@@ -59,8 +69,8 @@
   $(window).resize(function() {
     if (div2 != null) {
       var pos = div.position();
-      div2.css('left', (pos.left+5)+"px");
-      div2.css('top', (pos.top-15)+"px");
+      div2.css('left', (pos.left+8)+"px");
+      div2.css('top', (pos.top-17)+"px");
     }
   })
 })();

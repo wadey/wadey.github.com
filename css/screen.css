@@ -11,7 +11,7 @@ h1 {
 .block {
 	background-color: #000;
 	color: #fff;
-	width: 800px;
+	width: 600px;
 	height: 200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -22,4 +22,9 @@ h1 {
 .block h2 {
 	text-align: center;
 	padding-top: 70px;
+	cursor: pointer;
+}
+
+.block h2 a {
+  text-decoration: none;
 }

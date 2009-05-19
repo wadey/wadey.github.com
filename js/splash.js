@@ -29,7 +29,7 @@
     start: function() {
       var div = $('#code .inner');
       var pos = div.position();
-      div.prepend("<div class='bits' style='color:#333;height:300px;width:200px;position:absolute;left:"+(pos.left+5)+"px;top:"+(pos.top+5)+"px'></div>");
+      div.prepend("<div class='bits' style='left:"+(pos.left+5)+"px;top:"+(pos.top-15)+"px'></div>");
       div2 = div.find('.bits');
       
       //prep

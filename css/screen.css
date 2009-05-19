@@ -28,3 +28,10 @@ h1 {
 .block h2 a {
   text-decoration: none;
 }
+
+.block .bit {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+}

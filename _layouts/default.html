@@ -7,14 +7,11 @@
     <title>wadesimmons : {{ page.title }}</title>
     <link href="/css/screen.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script>
-    <!--
-    <% if page.js %>
-        <% page.js.each do |js| %>
+    {% if page.js %}
+        {% for js in page.js %}
             <script src="{{ js }}" type="text/javascript"></script>
-        <% end %>
-    <% end %>
-    -->
-    <script src="/js/splash.js" type="text/javascript"></script>
+        {% endfor %}
+    {% endif %}
   </head>
   <body>
       {{ content }}

@@ -1,6 +1,4 @@
 (function(){
-  var bits;
-  
   /*
   window.code_splash = {
     start: function() {
@@ -46,6 +44,7 @@
       div2.text(div2.text().substring(2));
       
       block.mouseover(function() {
+        div2.css('color', '#222')
         codeInterval = window.setInterval(function() {
           window.code_splash.animate();
         }, 100);
@@ -54,6 +53,7 @@
       
       block.mouseout(function() {
         window.clearInterval(codeInterval);
+        div2.css('color', '#111')
       })
     },
     
@@ -75,6 +75,64 @@
       var pos = div.position();
       div2.css('left', (pos.left+8)+"px");
       div2.css('top', (pos.top-17)+"px");
+    }
+  })
+})();
+
+(function(){
+  var container;
+  window.photos_splash = {
+    start: function() {
+      $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?id=41964757%40N00&format=json&jsoncallback=?", function(data) {
+        photos_splash.data_loaded(data);
+      })
+    },
+    
+    data_loaded: function(photos_data) {
+      var pos = $('#photos .inner').position()
+      var x = 0;
+      var y = 0;
+      var i = 0;
+      
+      container = $('#photos .container')
+      container.css('left', (pos.left + 5) + "px")
+      container.css('top', (pos.top - 15) + "px")
+      
+      var root_x = 0;
+      var root_y = 0;
+      
+      $.each(photos_data.items, function(i,item){
+        var media_s = item.media.m.replace(/_m.jpg$/, '_s.jpg')
+        //$('#photos').prepend("<img src='"+media_s+"' class='ft' style='left:"+x+"px;top:"+y+"px' /> ")
+        container.prepend("<img src='"+media_s+"' class='ft' style='width:58px;left:"+(root_x+(x*65))+"px;top:"+(root_y+(y*65))+"px' /> ")
+        x+=1;
+        i+=1;
+        if (x == 3) {
+          x = 0;
+          y += 1;
+        }
+        if (i == 9) {
+          x = 0;
+          y = 0;
+          root_x += 595 - (65*3)
+          //root_y -= 15
+        }
+        if (i == 18) {
+          return false;
+        }
+      })
+    }
+  }
+  
+  $(document).ready(function() {
+    photos_splash.start()
+  })
+  
+  $(window).resize(function() {
+    if (container != null) {
+      var pos = $('#photos .inner').position();
+      container.css('left', (pos.left + 5) + "px");
+      container.css('top', (pos.top - 15) + "px");
     }
   })
 })();

@@ -27,7 +27,7 @@
   var div;
   var div2;
   var codeInterval;
-  var maxBits = 491;
+  var maxBits;
   window.code_splash = {
     start: function() {
       var block = $('#code');
@@ -37,9 +37,13 @@
       div2 = div.find('.bits');
       
       //prep
-      for (var i = 0; i <= maxBits; ++i) {
+      for (maxBits = 0; div2.height() < 200; ++maxBits) {
         window.code_splash.animate();
       }
+      
+      //back up
+      maxBits-=2;
+      div2.text(div2.text().substring(2));
       
       block.mouseover(function() {
         codeInterval = window.setInterval(function() {
@@ -55,7 +59,7 @@
     
     animate: function() {
       var text = div2.text();
-      if (text.length > maxBits * 2) {
+      if (text.length >= maxBits * 2) {
         text = text.substring(2);
       }
       div2.text(text+' '+(Math.random() < 0.5 ? '0' : '1'))

@@ -63,11 +63,16 @@
         text = text.substring(2);
       }
       div2.text(text+' '+(Math.random() < 0.5 ? '0' : '1'))
+    },
+    
+    onclick: function(e) {
+      window.location = $('#code h2 a')[0].href
     }
   }
   
   $(document).ready(function() {
-    window.code_splash.start();
+    code_splash.start();
+    $('#code').click(code_splash.onclick)
   })
   
   $(window).resize(function() {
@@ -121,11 +126,16 @@
           return false;
         }
       })
+    },
+    
+    onclick: function(e) {
+      window.location = $('#photos h2 a')[0].href
     }
   }
   
   $(document).ready(function() {
     photos_splash.start()
+    $('#photos').click(photos_splash.onclick)
   })
   
   $(window).resize(function() {

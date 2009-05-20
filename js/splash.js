@@ -44,7 +44,7 @@
       div2.text(div2.text().substring(2));
       
       block.mouseover(function() {
-        div2.css('color', '#222')
+        div2.css('color', '#333')
         codeInterval = window.setInterval(function() {
           window.code_splash.animate();
         }, 100);
@@ -53,7 +53,7 @@
       
       block.mouseout(function() {
         window.clearInterval(codeInterval);
-        div2.css('color', '#111')
+        div2.css('color', '#222')
       })
     },
     

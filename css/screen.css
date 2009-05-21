@@ -1,4 +1,4 @@
-body {
+html {
 	background-color: #141414;
 	color: #fff;
 	font-family: helvetica,arial,sans-serif;
@@ -20,12 +20,14 @@ body {
   margin-right: auto;
   width: 600px;
   margin-bottom: 2em;
+  height: 50px;
 }
 
-h1 {
+#header h1 {
 	color: #DF6543;
 	text-align: center;
 	padding-top: 10px;
+	font-size: 2em;
 }
 
 .block {
@@ -50,6 +52,7 @@ h1 {
 	padding-top: 60px;
 	z-index: 10;
 	position: relative;
+	font-size: 150%;
 }
 
 a {

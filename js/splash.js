@@ -26,12 +26,14 @@
   var div2;
   var codeInterval;
   var maxBits;
+  var offsetX = 4;
+  var offsetY = -15;
   window.code_splash = {
     start: function() {
       var block = $('#code');
       div = block.find('.inner');
       var pos = div.position();
-      div.prepend("<div class='bits' style='left:"+(pos.left+8)+"px;top:"+(pos.top-17)+"px'></div>");
+      div.prepend("<div class='bits' style='left:"+(pos.left+offsetX)+"px;top:"+(pos.top+offsetY)+"px'></div>");
       div2 = div.find('.bits');
       
       //prep
@@ -78,14 +80,16 @@
   $(window).resize(function() {
     if (div2 != null) {
       var pos = div.position();
-      div2.css('left', (pos.left+8)+"px");
-      div2.css('top', (pos.top-17)+"px");
+      div2.css('left', (pos.left+offsetX)+"px");
+      div2.css('top', (pos.top+offsetY)+"px");
     }
   })
 })();
 
 (function(){
   var container;
+  var offsetX = 5;
+  var offsetY = -14;
   window.photos_splash = {
     start: function() {
       $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?id=41964757%40N00&format=json&jsoncallback=?", function(data) {
@@ -100,8 +104,8 @@
       var i = 0;
       
       container = $('#photos .container')
-      container.css('left', (pos.left + 5) + "px")
-      container.css('top', (pos.top - 15) + "px")
+      container.css('left', (pos.left + offsetX) + "px")
+      container.css('top', (pos.top + offsetY) + "px")
       
       var root_x = 0;
       var root_y = 0;
@@ -141,8 +145,8 @@
   $(window).resize(function() {
     if (container != null) {
       var pos = $('#photos .inner').position();
-      container.css('left', (pos.left + 5) + "px");
-      container.css('top', (pos.top - 15) + "px");
+      container.css('left', (pos.left + offsetX) + "px");
+      container.css('top', (pos.top + offsetY) + "px");
     }
   })
 })();

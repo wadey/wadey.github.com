@@ -1,5 +1,6 @@
 body {
 	background-color: #141414;
+	color: #fff;
 	font-family: helvetica,arial,sans-serif;
 }
 
@@ -8,6 +9,10 @@ body {
   padding: 1px;
   margin-right: 10px;
   border: 1px solid #333;
+}
+
+#footer {
+  text-align: center;
 }
 
 #header {
@@ -47,9 +52,13 @@ h1 {
 	position: relative;
 }
 
-.block h2 a {
+a {
   text-decoration: none;
   color: #7187A8;
+}
+
+a:hover {
+  color: #F5EE97;
 }
 
 .block:hover h2 a {

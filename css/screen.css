@@ -33,26 +33,33 @@ html {
 .block {
 	background-color: #000;
 	color: #fff;
-	width: 600px;
-	height: 200px;
+	width: 620px;
+	height: 130px;
 	margin-left: auto;
 	margin-right: auto;
 	border: 1px solid #333;
 	margin-bottom: 25px;
 	font-family: "monaco", monospace;
 	cursor: pointer;
+	position: relative;
 }
 
 #photos {
   background-image: "http://farm3.static.flickr.com/2284/3532740134_fae7fb57cd_m.jpg";
 }
 
+.block .label {
+  position: absolute;
+  left: 50px;
+  top: 0px;
+}
+
 .block h2 {
 	text-align: center;
-	padding-top: 60px;
 	z-index: 10;
-	position: relative;
-	font-size: 150%;
+	font-size: 3em;
+	background: #000;
+  opacity: 0.5;
 }
 
 a {
@@ -69,17 +76,20 @@ a:hover {
 }
 
 .bits {
-  width: 590px;
-  position: absolute;
+  width: 100%;
+  /*position: absolute;*/
   color: #222;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .container {
-  width: 590px;
-  position: absolute;
+  width: 100%;
+  /* position: absolute; */
 }
 
 .ft {
-  position: absolute;
+  width: 55px;
+  float:left;
+  margin-left: 6px;
+  margin-top: 6px;
 }

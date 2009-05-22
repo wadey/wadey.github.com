@@ -33,11 +33,11 @@
       var block = $('#code');
       div = block.find('.inner');
       var pos = div.position();
-      div.prepend("<div class='bits' style='left:"+(pos.left+offsetX)+"px;top:"+(pos.top+offsetY)+"px'></div>");
+      div.prepend("<div class='bits'></div>");
       div2 = div.find('.bits');
       
       //prep
-      for (maxBits = 0; div2.height() < 200; ++maxBits) {
+      for (maxBits = 0; div2.height() < 130; ++maxBits) {
         window.code_splash.animate();
       }
       
@@ -76,14 +76,6 @@
     code_splash.start();
     $('#code').click(code_splash.onclick)
   })
-  
-  $(window).resize(function() {
-    if (div2 != null) {
-      var pos = div.position();
-      div2.css('left', (pos.left+offsetX)+"px");
-      div2.css('top', (pos.top+offsetY)+"px");
-    }
-  })
 })();
 
 (function(){
@@ -99,36 +91,15 @@
     
     data_loaded: function(photos_data) {
       var pos = $('#photos .inner').position()
-      var x = 0;
-      var y = 0;
-      var i = 0;
       
       container = $('#photos .container')
-      container.css('left', (pos.left + offsetX) + "px")
-      container.css('top', (pos.top + offsetY) + "px")
-      
-      var root_x = 0;
-      var root_y = 0;
+      //container.css('left', (pos.left + offsetX) + "px")
+      //container.css('top', (pos.top + offsetY) + "px")
       
       $.each(photos_data.items, function(i,item){
         var media_s = item.media.m.replace(/_m.jpg$/, '_s.jpg')
         //$('#photos').prepend("<img src='"+media_s+"' class='ft' style='left:"+x+"px;top:"+y+"px' /> ")
-        container.prepend("<img src='"+media_s+"' class='ft' style='width:58px;left:"+(root_x+(x*65))+"px;top:"+(root_y+(y*65))+"px' /> ")
-        x+=1;
-        i+=1;
-        if (x == 3) {
-          x = 0;
-          y += 1;
-        }
-        if (i == 9) {
-          x = 0;
-          y = 0;
-          root_x += 595 - (65*3)
-          //root_y -= 15
-        }
-        if (i == 18) {
-          return false;
-        }
+        container.prepend("<img src='"+media_s+"' class='ft' /> ")
       })
     },
     

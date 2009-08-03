@@ -4,5 +4,13 @@
 </head>
 <body>
     <a href="http://wades.im/mons">http://wades.im/mons</a>
+    <script>   
+      var query = window.location.search.substring(1);
+      if (query.length > 0) {
+        if (query[0] == 'f') {
+          window.location = "/f/?" + query.substring(1);
+        }
+      }
+    </script>
 </body>
 </html>

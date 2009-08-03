@@ -16,7 +16,7 @@ Redirecting you to <a href="http://flickr.com/photos/wsimmons">Flickr</a>...
       return decoded;
   }
   
-    //var id = window.location.search.substring(1);
-    var id = window.location.hash.substring(1);
+    var id = window.location.search.substring(1);
+    //var id = window.location.hash.substring(1);
     window.location = "http://flickr.com/photos/wsimmons/" + base58_decode(id);
 </script>

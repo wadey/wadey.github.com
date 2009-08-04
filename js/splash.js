@@ -99,7 +99,7 @@
       $.each(photos_data.items, function(i,item){
         var media_s = item.media.m.replace(/_m.jpg$/, '_s.jpg')
         //$('#photos').prepend("<img src='"+media_s+"' class='ft' style='left:"+x+"px;top:"+y+"px' /> ")
-        container.prepend("<img src='"+media_s+"' class='ft' /> ")
+        container.append("<img src='"+media_s+"' class='ft' /> ")
       })
     },
     

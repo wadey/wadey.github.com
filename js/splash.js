@@ -1,27 +1,4 @@
 (function(){
-  /*
-  window.code_splash = {
-    start: function() {
-      var div = $('#code');
-      var pos = div.position();
-      for (var x = 0; x < 5; ++x) {
-        for (var y = 0; y < 5; ++y) {
-          div.prepend("<div class='bit' style='left:"+(pos.left+5+(25*x))+"px;top:"+(pos.top+5+(25*y))+"px;background-color:#333' />");
-        }
-      }
-      
-      bits = $('.bit');
-      
-      window.setInterval(function() {
-        bits.each(function() {
-          this.style.backgroundColor = "blue";
-          this.style.left += 1;
-        })
-      }, 500);
-    }
-  }
-  */
-  
   var div;
   var div2;
   var codeInterval;
@@ -93,12 +70,9 @@
       var pos = $('#photos .inner').position()
       
       container = $('#photos .container')
-      //container.css('left', (pos.left + offsetX) + "px")
-      //container.css('top', (pos.top + offsetY) + "px")
       
       $.each(photos_data.items, function(i,item){
         var media_s = item.media.m.replace(/_m.jpg$/, '_s.jpg')
-        //$('#photos').prepend("<img src='"+media_s+"' class='ft' style='left:"+x+"px;top:"+y+"px' /> ")
         container.append("<img src='"+media_s+"' class='ft' /> ")
       })
     },

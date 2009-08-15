@@ -74,7 +74,7 @@
   
   $(document).ready(function() {
     code_splash.start();
-    $('#code').click(code_splash.onclick)
+    $('#code').mousedown(code_splash.onclick)
   })
 })();
 
@@ -110,7 +110,9 @@
   
   $(document).ready(function() {
     photos_splash.start()
-    $('#photos').click(photos_splash.onclick)
+    var photos = $('#photos')
+    var photos_url = photos.find('a')[0].href;
+    photos.mousedown(photos_splash.onclick)
   })
   
   $(window).resize(function() {

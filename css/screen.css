@@ -12,6 +12,7 @@ html {
 }
 
 #footer {
+  margin-top: 2em;
   text-align: center;
 }
 
@@ -107,4 +108,12 @@ a:hover {
   height: 100%;
   top: 0;
   left: 0;
+}
+
+td.exifKey {
+  text-align: right;
+}
+
+td.exifValue {
+  text-align: left;
 }

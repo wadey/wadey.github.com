@@ -1,0 +1,69 @@
+---
+layout: default
+js: [/js/flickr.js]
+---
+<noscript>
+  This page requires JavaScript
+</noscript>
+<script>
+  $(document).ready(function() {
+    if(typeof console === "undefined") {
+        console = { log: function() { } };
+    }
+    
+    var params = $.parseQuery();
+    
+    flickr.photos.getInfo(params.id, function(photo) {
+      console.log(photo)
+      $("#bigPhoto").html("<img src='" + flickr.mediumImg(photo) + "' />");
+    })
+    
+    flickr.photos.getExif(params.id, function(exif) {
+      //console.log(photo)
+      window.exif = exif
+      //window.exif = flickr.parseExif(photo);
+      
+      if (exif.length == 0) {
+        // Flickr sometimes errors on this call, returns no exif data
+        $("#exifLoading").text("Error loading data from Flickr")
+      } else {
+        $("#exifTable .exifValue").each(function() {
+          var elem = $(this);
+          window.test = elem;
+          elem.text(exif.pretty(elem.attr("exifTagspace"), elem.attr("exifTag")))
+        });
+      }
+    })
+  });
+</script>
+<div>
+  <div id="bigPhoto">
+    Loading Photo...
+  </div>
+  <table id="exifTable">
+    <tr>
+      <td class="exifKey">Camera</td>
+      <td id="exifLoading" class="exifValue" exifTagspace="IFD0" exifTag="Model">Loading...</td>
+    </tr>
+    <tr>
+      <td class="exifKey">Lens</td>
+      <td id="exifLoading" class="exifValue" exifTagspace="Canon" exifTag="LensType"></td>
+    </tr>
+    <tr>
+      <td class="exifKey">Focal Length</td>
+      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="FocalLength"></td>
+    </tr>
+    <tr>
+      <td class="exifKey">Aperture</td>
+      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="FNumber"></td>
+    </tr>
+    <tr>
+      <td class="exifKey">ISO</td>
+      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="ISO"></td>
+    </tr>
+    <tr>
+      <td class="exifKey">Exposure Bias</td>
+      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="ExposureCompensation"></td>
+    </tr>
+  </table>
+</div>

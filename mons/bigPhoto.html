@@ -1,0 +1,26 @@
+---
+layout: default
+js: [/js/flickr.js]
+---
+<noscript>
+  This page requires JavaScript
+</noscript>
+<script>
+  $(document).ready(function() {
+    if(typeof console === "undefined") {
+        console = { log: function() { } };
+    }
+    
+    var params = $.parseQuery();
+    
+    flickr.photos.getInfo(params.id, function(photo) {
+      console.log(photo)
+      $("#bigPhoto").html("<img src='" + flickr.largeImg(photo) + "' />");
+    })
+  });
+</script>
+<div>
+  <div id="bigPhoto">
+    Loading Photo...
+  </div>
+</div>

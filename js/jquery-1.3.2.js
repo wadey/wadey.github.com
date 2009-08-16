@@ -3399,7 +3399,7 @@ jQuery.extend({
 		// checked again later (in the test suite, specifically)
 		s = jQuery.extend(true, s, jQuery.extend(true, {}, jQuery.ajaxSettings, s));
 
-		var jsonp, jsre = /=\?(&|$)/g, status, data,
+		var jsonp, jsre = /=(?:\?|%3F)(&|$)/g, status, data,
 			type = s.type.toUpperCase();
 
 		// convert data if not already a string

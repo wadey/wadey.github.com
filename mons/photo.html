@@ -25,7 +25,7 @@ js: [/js/flickr.js]
       window.exif = exif
       //window.exif = flickr.parseExif(photo);
       
-      if (exif === undefined || keys(exif).length == 0) {
+      if (exif === undefined) {
         // Flickr sometimes errors on this call, returns no exif data
         $("#exifLoading").text("Error loading data from Flickr")
       } else {

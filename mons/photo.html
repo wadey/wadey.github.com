@@ -1,4 +1,5 @@
 ---
+title: photo
 layout: default
 js: [/js/flickr.js]
 ---
@@ -15,7 +16,8 @@ js: [/js/flickr.js]
     
     flickr.photos.getInfo(params.id, function(photo) {
       console.log(photo)
-      $("#bigPhoto").html("<img src='" + flickr.mediumImg(photo) + "' />");
+      $("#bigPhoto").html("<a href='bigPhoto.html?id="+params.id+"'><img src='" + flickr.mediumImg(photo) + "' /></a>");
+      document.title = "wadesimmons : " + photo.title._content;
     })
     
     flickr.photos.getExif(params.id, function(exif) {
@@ -47,23 +49,23 @@ js: [/js/flickr.js]
     </tr>
     <tr>
       <td class="exifKey">Lens</td>
-      <td id="exifLoading" class="exifValue" exifTagspace="Canon" exifTag="LensType"></td>
+      <td class="exifValue" exifTagspace="Canon" exifTag="LensType"></td>
     </tr>
     <tr>
       <td class="exifKey">Focal Length</td>
-      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="FocalLength"></td>
+      <td class="exifValue" exifTagspace="ExifIFD" exifTag="FocalLength"></td>
     </tr>
     <tr>
       <td class="exifKey">Aperture</td>
-      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="FNumber"></td>
+      <td class="exifValue" exifTagspace="ExifIFD" exifTag="FNumber"></td>
     </tr>
     <tr>
       <td class="exifKey">ISO</td>
-      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="ISO"></td>
+      <td class="exifValue" exifTagspace="ExifIFD" exifTag="ISO"></td>
     </tr>
     <tr>
       <td class="exifKey">Exposure Bias</td>
-      <td id="exifLoading" class="exifValue" exifTagspace="ExifIFD" exifTag="ExposureCompensation"></td>
+      <td class="exifValue" exifTagspace="ExifIFD" exifTag="ExposureCompensation"></td>
     </tr>
   </table>
 </div>

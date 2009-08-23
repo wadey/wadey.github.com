@@ -12,6 +12,7 @@ html {
 }
 
 #footer {
+  clear: both;
   margin-top: 2em;
   text-align: center;
 }
@@ -116,4 +117,25 @@ td.exifKey {
 
 td.exifValue {
   text-align: left;
+}
+
+/*
+#photos-container {
+  text-align: center;
+  margin: 0 auto;
+}
+*/
+
+#photos {
+  width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.photo-cell {
+  padding: 1em;
+}
+
+.photo-cell img {
+  cursor: pointer;
 }

@@ -10,6 +10,11 @@
       },
       getInfo: function(photoId, callback) {
         flickr.call("flickr.photos.getInfo", {photo_id: photoId}, function(data) { callback(data.photo) });
+      },
+      search: function(params, callback) {
+        flickr.call("flickr.photos.search", params, function(data) {
+          callback(data.photos);
+        })
       }
     },
     
@@ -46,6 +51,10 @@
         exif.data[element.tagspace][element.tag] = {raw: raw, clean: clean, pretty: pretty}
       }
       return exif
+    },
+    
+    smallImg: function(photo) {
+      return flickr.buildImgUrl(photo.farm, photo.server, photo.id, photo.secret, "m");
     },
     
     mediumImg: function(photo) {

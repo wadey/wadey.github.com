@@ -1,0 +1,79 @@
+---
+title: photos
+layout: default
+js: [/js/flickr.js, /facebox/facebox.js]
+css: [/facebox/facebox.css]
+---
+<noscript>
+  This page requires JavaScript. Either enable Javascript, or visit http://www.flickr.com/photos/wsimmons instead
+</noscript>
+<script>
+  $(document).ready(function() {
+    if(typeof console === "undefined") {
+        console = { log: function() { } };
+    }
+    
+    var userId = "41964757@N00";
+    var pageSize = 10;
+    var params = $.parseQuery();
+    
+    if (params.id) {
+      flickr.photos.getInfo(params.id, function(photo) {
+        console.log(photo)
+        $("#bigPhoto").html("<a href='bigPhoto.html?id="+params.id+"'><img src='" + flickr.mediumImg(photo) + "' /></a>");
+        document.title = "wadesimmons : " + photo.title._content;
+      })
+    
+      flickr.photos.getExif(params.id, function(exif) {
+        //console.log(photo)
+        window.exif = exif
+        //window.exif = flickr.parseExif(photo);
+      
+        if (exif === undefined || exif.data['ExifIFD'] === undefined) {
+          // Flickr sometimes errors on this call, returns no exif data
+          $("#exifLoading").text("Error loading data from Flickr")
+        } else {
+          $("#exifTable .exifValue").each(function() {
+            var elem = $(this);
+            window.test = elem;
+            elem.text(exif.pretty(elem.attr("exifTagspace"), elem.attr("exifTag")))
+          });
+        }
+      })
+    } else {
+      flickr.photos.search({user_id: userId, per_page: pageSize, extras: "date_upload,date_taken"}, function (photos) {
+        $("#photos-loading").html("");
+        var table = $("#photos")
+        
+        var row = $('<tr />').appendTo(table);
+        
+        $.each(photos.photo, function(i, photo) {
+          //var photo = photos.photo[i]
+          if (i % 3 == 0) {
+            row = $('<tr />').appendTo(table);
+          }
+          var td = $('<td />').attr('class', 'photo-cell')
+          var img = $('<img />').attr('title', photo.title).attr('src', flickr.smallImg(photo)).click(function() {
+            console.log(i);
+            $.facebox(function() {
+              var bigImg = $('<img />');
+              bigImg.load(function() {
+                $.facebox(bigImg[0]);
+              })
+              bigImg.attr("src", flickr.mediumImg(photo))
+            });
+          })
+          td.append(img);
+          row.append(td);
+        })
+      })
+    }
+  });
+</script>
+<div id="photos-container">
+  <div id="photos-loading">
+    Loading Photos...
+  </div>
+  <table id="photos">
+  </table>
+</div>

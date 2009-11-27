@@ -23,6 +23,11 @@
             <link rel="stylesheet" href="{{ css }}" type="text/css" />
         {% endfor %}
     {% endif %}
+    {% if page.style %}
+        <style type="text/css">
+            {{ page.style }}
+        </style>
+    {% endif %}
   </head>
   <body>
     <div id="header">
@@ -31,7 +36,7 @@
       <img class="splash_av" src="/img/avatar/3.jpg" />
       <img class="splash_av" src="/img/avatar/4.jpg" />
       <img class="splash_av" src="/img/avatar/5.jpg" />
-      <h1>wade simmons</h1>
+      <h1>{% if page.isIndex %}wade simmons{% else %}<a href='http://wades.im/mons'>wade simmons</a>{% endif %}</h1>
     </div>
       {{ content }}
     <div id="footer">

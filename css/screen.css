@@ -32,6 +32,14 @@ html {
 	font-size: 2em;
 }
 
+#header a, #header a:hover {
+  color: #DF6543;
+}
+
+#header a:hover {
+  text-decoration: underline;
+}
+
 .block {
 	background-color: #000;
 	color: #fff;

@@ -16,7 +16,7 @@ style: "html { background-color: #000000 }"
     
     flickr.photos.getInfo(params.id, function(photo) {
       console.log(photo)
-      $("#bigPhoto").html("<img src='" + flickr.largeImg(photo) + "' />");
+      $("#bigPhoto").html("<a href='" + photo.urls.url[0]._content + "'><img src='" + flickr.largeImg(photo) + "' /></a>");
     })
   });
 </script>

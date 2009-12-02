@@ -58,10 +58,10 @@ css: [/facebox/facebox.css]
             $.facebox(function() {
               var bigImg = $('<img />');
               bigImg.load(function() {
-                if (bigImg[0].width > bigImg[0].height && bigImg[0].width > 725) {
-                  bigImg.attr("width", 725);
-                } else if (bigImg[0].height > 725) {
-                  bigImg.attr("height", 725);
+                if (bigImg[0].width > bigImg[0].height && bigImg[0].width > 760) {
+                  bigImg.attr("width", 760);
+                } else if (bigImg[0].height > 760) {
+                  bigImg.attr("height", 760);
                 }
                 $.facebox(bigImg[0]);
               })

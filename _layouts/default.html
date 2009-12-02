@@ -32,6 +32,14 @@
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-10238719-1']);
       _gaq.push(['_trackPageview']);
+      
+      var _g = _g || {};
+      _g.trackEvent = function() {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift('_trackEvent');
+        _gaq.push(args);
+      }
+      
       (function() {
         var ga = document.createElement('script');
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';

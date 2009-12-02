@@ -54,11 +54,6 @@ html {
 	position: relative;
 }
 
-#photos {
-  background-image: "http://farm3.static.flickr.com/2284/3532740134_fae7fb57cd_m.jpg";
-  display: block;
-}
-
 #code {
   display: block;
 }
@@ -134,13 +129,12 @@ td.exifValue {
 }
 */
 
-/*
-#photos {
+
+#photos-container {
   width: 800px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 }
-*/
+
 
 .photo-cell {
   padding: 1em;

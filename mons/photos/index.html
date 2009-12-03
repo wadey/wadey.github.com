@@ -66,13 +66,13 @@ css: [/facebox/facebox.css]
                 var div = $("<div />")
                 div.append(bigImg)
                 div.append("<br />");
-                var span = $("<span>Loading EXIF...</span>");
-                div.append(span);
+                var exifInsert = $("<div><table class='photo-exif'><tr><td>Loading EXIF...</td></tr></table></div>");
+                div.append(exifInsert);
                 div.append("<h2>"+photo.title+"</h2>")
                 $.facebox(div);
                 flickr.photos.getExif(photo.id, function(exif) {
                   console.log(exif);
-                  span.html(exifString(exif))
+                  exifInsert.html(exifString(exif))
                 });
               })
               var isLarge = (photo.o_width > 1024 || photo.o_height > 1024);

@@ -135,11 +135,21 @@ td.exifValue {
   margin: 0 auto;
 }
 
-
 .photo-cell {
   padding: 1em;
+  border: 0px none;
 }
 
 .photo-cell img {
   cursor: pointer;
+}
+
+.photo-exif {
+  margin-top: 0.5em;
+  width: 100%;
+}
+
+.photo-exif td {
+  width: 25%;
+  text-align: center;
 }

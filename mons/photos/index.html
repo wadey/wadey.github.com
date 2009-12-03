@@ -5,7 +5,7 @@ js: [/js/flickr.js, /facebox/facebox.js]
 css: [/facebox/facebox.css]
 ---
 <noscript>
-  This page requires JavaScript. Either enable Javascript, or visit http://www.flickr.com/photos/wsimmons instead
+  This page requires JavaScript. Either enable Javascript, or visit <a href="http://www.flickr.com/photos/wsimmons">http://www.flickr.com/photos/wsimmons</a> instead
 </noscript>
 <script>
   $(document).ready(function() {
@@ -41,7 +41,7 @@ css: [/facebox/facebox.css]
         }
       })
     } else {
-      flickr.photos.search({user_id: userId, per_page: pageSize, extras: "date_upload,date_taken"}, function (photos) {
+      flickr.photos.search({user_id: userId, per_page: pageSize, extras: "date_upload,date_taken,o_dims"}, function (photos) {
         $("#photos-loading").html("");
         var table = $("#photos")
         
@@ -63,9 +63,20 @@ css: [/facebox/facebox.css]
                 } else if (bigImg[0].height > 760) {
                   bigImg.attr("height", 760);
                 }
-                $.facebox(bigImg[0]);
+                var div = $("<div />")
+                div.append(bigImg)
+                div.append("<br />");
+                var span = $("<span>Loading EXIF...</span>");
+                div.append(span);
+                div.append("<h2>"+photo.title+"</h2>")
+                $.facebox(div);
+                flickr.photos.getExif(photo.id, function(exif) {
+                  console.log(exif);
+                  span.html(exifString(exif))
+                });
               })
-              bigImg.attr("src", flickr.largeImg(photo))
+              var isLarge = (photo.o_width > 1024 || photo.o_height > 1024);
+              bigImg.attr("src", (isLarge ? flickr.largeImg(photo) : flickr.mediumImg(photo)));
             });
           })
           td.append(img);
@@ -74,6 +85,44 @@ css: [/facebox/facebox.css]
       })
     }
   });
+  
+  // TODO: convert to template function
+  function exifString(exif) {
+    var html = "<table class='photo-exif'><tr>";
+    
+    var iso = exif.data.ExifIFD.ISO;
+    if (iso) {
+      html += "<td>ISO " + iso.pretty() + "</td>";
+    } else {
+      html += "<td></td>";
+    }
+    
+    var fl = exif.data.ExifIFD.FocalLength;
+    if (fl) {
+      html += "<td>" + fl.pretty() + "</td>";
+    } else {
+      html += "<td></td>";
+    }
+    
+    var a = exif.data.ExifIFD.FNumber;
+    if (a == null) {
+      a = exif.data.ExifIFD.ApertureValue;
+    }
+    if (a) {
+      html += "<td>" + a.pretty() + "</td>"
+    } else {
+      html += "<td></td>"
+    }
+    
+    var t = exif.data.ExifIFD.ExposureTime;
+    if (t) {
+      html += "<td>" + t.pretty() + "</td>";
+    } else {
+      html += "<td></td>";
+    }
+    
+    return html + "</tr></table>";
+  }
 </script>
 <div id="photos-container">
   <div id="photos-loading">

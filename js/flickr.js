@@ -76,12 +76,13 @@
       params.api_key = flickr.key;
       params.method = method;
       params.format = "json";
-      params.jsoncallback = "?";
       
-      $.getJSON("http://api.flickr.com/services/rest/", params, function(data) {
+      params = $.param(params) + '&jsoncallback=?'
+      
+      $.get("http://api.flickr.com/services/rest/?" + params, function(data) {
         console.log(data);
         callback(data);
-      });
+      }, 'json');
     }
   }
 })();

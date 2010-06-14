@@ -1,23 +1,23 @@
 html {
-	background-color: #141414;
-	color: #fff;
-	font-family: helvetica,arial,sans-serif;
+  background-color: #E4E4E4;
+  color: #000;
 }
 
 .splash_av {
   float: left;
   padding: 1px;
   margin-right: 10px;
-  border: 1px solid #333;
+  border: 1px solid #737373;
 }
 
-#footer {
+#ft {
   clear: both;
   margin-top: 2em;
   text-align: center;
 }
 
-#header {
+#hd {
+  margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
   width: 600px;
@@ -25,131 +25,63 @@ html {
   height: 50px;
 }
 
-#header h1 {
-	color: #DF6543;
-	text-align: center;
-	padding-top: 10px;
-	font-size: 2em;
+#hd h1 {
+  color: #DF6543;
+  text-align: center;
+  padding-top: .4em;
+  font-size: 2em;
 }
 
-#header a, #header a:hover {
+#hd a, #hd a:hover {
   color: #DF6543;
 }
 
-#header a:hover {
+#hd a:hover {
   text-decoration: underline;
 }
 
-.block {
-	background-color: #000;
-	color: #fff;
-	width: 620px;
-	height: 130px;
-	margin-left: auto;
-	margin-right: auto;
-	border: 1px solid #333;
-	margin-bottom: 25px;
-	font-family: "monaco", monospace;
-	cursor: pointer;
-	position: relative;
-}
-
-#code {
-  display: block;
-}
-
-.block .label {
-  position: absolute;
-  left: 50px;
-  top: 0px;
-}
-
-.block h2 {
-	text-align: center;
-	z-index: 10;
-	font-size: 3em;
-	background: #000;
-  opacity: 0.79;
-  padding: 0 5px;
+#bd h2 {
+  color: #DF6543;
+  font-size: 1.75em;
+  margin-bottom: .5em;
 }
 
 a {
   text-decoration: none;
-  color: #7187A8;
+  color: #3E506B;
 }
 
 a:hover {
-  color: #F5EE97;
+  color: #67789F;
 }
 
-.block:hover h2 a {
-  color: #F5EE97;
+.subtle {
+  font-size: 93%;
+  color: #565656;
 }
 
-.bits {
-  width: 100%;
-  /*position: absolute;*/
-  color: #222;
-  font-size: 13px;
+/* INDEX PAGE */
+
+.indexblock {
+  padding-left: 2em;
+  margin-bottom: 1em;
 }
 
-.container {
-  width: 100%;
-  /* position: absolute; */
+.indexblock dl {
+  margin-bottom: 1em;
 }
 
-.ft {
-  width: 55px;
-  float:left;
-  margin-left: 6px;
-  margin-top: 6px;
+.indexblock dt {
+  font-weight: bold;
+  float: left;
+  clear: both;
+  width: 10em;
 }
 
-.floating-a {
-  z-index: 1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+.indexblock dd {
+  margin-left: 5em;
 }
 
-td.exifKey {
-  text-align: right;
-}
-
-td.exifValue {
-  text-align: left;
-}
-
-/*
-#photos-container {
-  text-align: center;
-  margin: 0 auto;
-}
-*/
-
-
-#photos-container {
-  width: 800px;
-  margin: 0 auto;
-}
-
-.photo-cell {
-  padding: 1em;
-  border: 0px none;
-}
-
-.photo-cell img {
-  cursor: pointer;
-}
-
-.photo-exif {
-  margin-top: 0.5em;
-  width: 100%;
-}
-
-.photo-exif td {
-  width: 25%;
-  text-align: center;
+#photothumbs {
+  margin-bottom: 1em;
 }

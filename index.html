@@ -10,6 +10,8 @@
       var query = window.location.search.substring(1);
       if (query.length > 1 && query.indexOf('=') < 0) {
         window.location = "/" + query[0] + "/?" + query.substring(1);
+      } else {
+        window.location = "/mons"
       }
     </script>
 </body>

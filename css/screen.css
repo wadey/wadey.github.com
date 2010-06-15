@@ -29,7 +29,7 @@ html {
   color: #DF6543;
   text-align: center;
   padding-top: .4em;
-  font-size: 2em;
+  font-size: 197%;
 }
 
 #hd a, #hd a:hover {
@@ -40,9 +40,15 @@ html {
   text-decoration: underline;
 }
 
-#bd h2 {
+#bd h1 {
   color: #DF6543;
-  font-size: 1.75em;
+  font-size: 167%;
+  margin-bottom: .5em;
+}
+
+#bd h2 {
+  font-weight: bold;
+  font-size: 108%;
   margin-bottom: .5em;
 }
 
@@ -58,6 +64,11 @@ a:hover {
 .subtle {
   font-size: 93%;
   color: #565656;
+}
+
+#bd p {
+  margin-bottom: 1em;
+  text-align: justify;
 }
 
 /* INDEX PAGE */

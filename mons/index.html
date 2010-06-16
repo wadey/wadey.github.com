@@ -1,6 +1,6 @@
 ---
 layout: default
-js: [/js/splash.js, /js/stream.js]
+js: [/js/splash.js, /js/stream.js, /js/md5.js]
 css: [/css/stream.css]
 isIndex: true
 ---
@@ -41,5 +41,6 @@ isIndex: true
 <script>
 $(document).ready(function(){
   stream.twitter.fetch("wadey")
+  stream.github.fetch("wadey")
 })
 </script>

@@ -37,7 +37,21 @@ var stream = (function(){
     
     function add_stream(activity) {
         // console.log(activity)
-        $("#stream_list").append("<li class='service-icon service-"+activity.service+"'>"+activity.title+" <br /><a class='time' href='"+activity.url+"'>"+long_date(activity.timestamp)+"</a></li>")
+        var ts = activity.timestamp.getTime();
+        var item = "<li ts='"+activity.timestamp.getTime()+"' class='service-icon service-"+activity.service+"'>"+activity.title+" <br /><a class='time' href='"+activity.url+"'>"+long_date(activity.timestamp)+"</a></li>";
+        var found = false;
+        $("#stream_list .service-icon").each(function(i, e) {
+            e = $(e)
+            if (ts > e.attr('ts')) {
+                e.before(item)
+                found = true;
+                return false;
+            }
+        })
+        
+        if (!found) {
+            $("#stream_list").append(item)
+        }
     }
     
     var github = {
@@ -142,7 +156,7 @@ var stream = (function(){
         fetch: function(username) {
             $.getJSON("http://api.twitter.com/1/statuses/user_timeline/"+username+".json?include_entities=true&callback=?", function(data) {
                 $.each(data, function(i,entry) {
-                    console.log(entry)
+                    // console.log(entry)
                     result = new Activity({
                         "timestamp": new Date(entry.created_at),
                         "url": "http://twitter.com/"+entry.user.screen_name+"/status/"+entry.id,

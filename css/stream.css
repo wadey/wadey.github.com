@@ -9,7 +9,7 @@ li.service-icon {
     background: url("../img/services/other.png") no-repeat scroll 0 0 transparent;
     display: block;
     padding-left: 20px;
-    padding-top: 2px;
+    padding-top: 1px;
     overflow: hidden;
     min-width: 16px;
     min-height: 18px;

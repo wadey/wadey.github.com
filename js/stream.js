@@ -67,31 +67,45 @@ var stream = (function(){
                 })
             },
             PushEvent: function(entry) {
+                var shas_to_show = entry.payload.shas
+                var body = ""
+                if (entry.payload.shas.length > 3) {
+                    shas_to_show = entry.payload.shas.slice(0, 3)
+                    var count = entry.payload.shas.length - shas_to_show.length
+                    body = "<br /><a href='"+entry.url+"'>"+count+" more "+(count==1?'commit':'commits')+" »</a>"
+                }
+                body = ($.map(shas_to_show, function(e) {
+                            var gravatar = "<span title='"+escapeHTML(e[3])+"'><img src='http://www.gravatar.com/avatar/"+hex_md5(e[1])+"?s=140&amp;d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-140.png' alt='' width='16' height='16'></span>"
+                            return gravatar + " <a href='"+entry.repository.url+"/commit/"+e[0]+"'><code>" + e[0].substring(0,7) + "</code></a> " + escapeHTML(e[2])
+                        })).join("<br />") + body
+                
                 return new Activity({"title": "pushed to "+entry.payload.ref.substring(entry.payload.ref.lastIndexOf('/')+1)+" at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>",
-                                     "body": ($.map(entry.payload.shas, function(e) {return "<a href='"+entry.repository.url+"/commit/"+e[0]+"'><code>" + e[0].substring(0,7) + "</code></a> " + e[2]})).join("<br />"),
-                                     "url": entry.url})
+                                     "body": body})
             },
             ForkEvent: function(entry) {
                 return new Activity({"title": "forked <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
             },
-            FollowEvent: function(entry) {
-                return new Activity({"title": "started following " + entry.payload.target})
+            WatchEvent: function(entry) {
+                return new Activity({"title": "started watching <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
             },
             CreateEvent: function(entry) {
                 if (entry.payload.object == "tag") {
                     return new Activity({"title": "created tag " + entry.payload.object_name + " at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
-                }
-            },
-            WatchEvent: function(entry) {
-                if (entry.payload.action == "started") {
-                    return new Activity({"title": "started watching <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
+                } else if (entry.payload.object == "branch") {
+                    return new Activity({"title": "created branch " + entry.payload.object_name + " at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
                 }
             },
             MemberEvent: function(entry) {
                 if (entry.payload.action == "added") {
                     return new Activity({"title": "added a member to <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
                 }
-            }
+            },
+            IssuesEvent: function(entry) {
+                if (entry.payload.action == "opened") {
+                    return new Activity({"title": "opened <a href='"+entry.url+"'>issue "+entry.payload.issue+"</a> on <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
+                }
+            },
+            
         },
     
         fetch: function(username) {
@@ -104,7 +118,7 @@ var stream = (function(){
                         if (result) {
                             result.service = "github"
                             result.timestamp = new Date(entry.created_at)
-                            result.url = result.url || "http://github.com/"+username
+                            result.url = result.url || entry.url || "http://github.com/"+username
                             add_stream(result)
                         } else {
                             console.warn("unknown activity", entry)

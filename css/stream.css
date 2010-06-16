@@ -1,0 +1,30 @@
+div#stream {
+    text-align: left;
+    margin: 0 auto;
+    position: relative;
+    width: 800px;
+}
+
+li.service-icon {
+    background: url("../img/services/other.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    padding-left: 20px;
+    padding-top: 2px;
+    overflow: hidden;
+    min-width: 16px;
+    min-height: 18px;
+    margin-bottom: 0.75em;
+}
+
+li.service-twitter {
+    background-image: url("../img/services/twitter.png");
+}
+
+li.service-github {
+    background-image: url("../img/services/github.png");
+}
+
+a.time {
+    font-size: smaller;
+    color: #565656;
+}

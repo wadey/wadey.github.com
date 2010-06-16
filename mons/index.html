@@ -1,6 +1,7 @@
 ---
 layout: default
-js: [/js/splash.js]
+js: [/js/splash.js, /js/stream.js]
+css: [/css/stream.css]
 isIndex: true
 ---
 <div id="about" class='indexblock'>
@@ -32,3 +33,13 @@ isIndex: true
       <dd>Uploading random bits and pieces here.</dd>
   </dl>
 </div>
+<h1>Stream</h1>
+<div id="stream" class='indexblock'>
+  <div id="stream_list"></div>
+</div>
+
+<script>
+$(document).ready(function(){
+  stream.twitter.fetch("wadey")
+})
+</script>

@@ -13,7 +13,12 @@ li.service-icon {
     overflow: hidden;
     min-width: 16px;
     min-height: 18px;
-    margin-bottom: 0.75em;
+    margin-bottom: 1em;
+}
+
+li.service-icon p {
+    margin-bottom: 0 !important;
+    margin-left: 2em;
 }
 
 li.service-twitter {

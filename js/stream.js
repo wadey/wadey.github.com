@@ -38,7 +38,11 @@ var stream = (function(){
     function add_stream(activity) {
         // console.log(activity)
         var ts = activity.timestamp.getTime();
-        var item = "<li ts='"+activity.timestamp.getTime()+"' class='service-icon service-"+activity.service+"'>"+activity.title+" <br /><a class='time' href='"+activity.url+"'>"+long_date(activity.timestamp)+"</a></li>";
+        var body = "<br />";
+        if (activity.body) {
+            body = "<p>" + activity.body + "</p>"
+        }
+        var item = "<li ts='"+activity.timestamp.getTime()+"' class='service-icon service-"+activity.service+"'>"+activity.title+body+"<a class='time' href='"+activity.url+"'>"+long_date(activity.timestamp)+"</a></li>";
         var found = false;
         $("#stream_list .service-icon").each(function(i, e) {
             e = $(e)
@@ -63,27 +67,29 @@ var stream = (function(){
                 })
             },
             PushEvent: function(entry) {
-                return new Activity({"title": "pushed to " + entry.repository.url})
+                return new Activity({"title": "pushed to "+entry.payload.ref.substring(entry.payload.ref.lastIndexOf('/')+1)+" at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>",
+                                     "body": ($.map(entry.payload.shas, function(e) {return "<a href='"+entry.repository.url+"/commit/"+e[0]+"'><code>" + e[0].substring(0,7) + "</code></a> " + e[2]})).join("<br />"),
+                                     "url": entry.url})
             },
             ForkEvent: function(entry) {
-                return new Activity({"title": "forked " + entry.repository.url})
+                return new Activity({"title": "forked <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
             },
             FollowEvent: function(entry) {
                 return new Activity({"title": "started following " + entry.payload.target})
             },
             CreateEvent: function(entry) {
                 if (entry.payload.object == "tag") {
-                    return new Activity({"title": "created tag " + entry.payload.object_name + " at " + entry.repository.url})
+                    return new Activity({"title": "created tag " + entry.payload.object_name + " at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
                 }
             },
             WatchEvent: function(entry) {
                 if (entry.payload.action == "started") {
-                    return new Activity({"title": "started watching " + entry.repository.url})
+                    return new Activity({"title": "started watching <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
                 }
             },
             MemberEvent: function(entry) {
                 if (entry.payload.action == "added") {
-                    return new Activity({"title": "added a member to " + entry.repository.url})
+                    return new Activity({"title": "added a member to <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
                 }
             }
         },
@@ -91,6 +97,7 @@ var stream = (function(){
         fetch: function(username) {
             $.getJSON("http://github.com/"+username+".json?callback=?", function(data) {
                 $.each(data, function(i,entry) {
+                    console.log(entry)
                     parser = github.parsers[entry.type]
                     if (parser) {
                         result = parser(entry)

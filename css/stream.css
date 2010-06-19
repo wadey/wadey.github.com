@@ -16,9 +16,10 @@ li.service-icon {
     margin-bottom: 1em;
 }
 
-li.service-icon p {
+li.service-icon p,pre {
     margin-bottom: 0 !important;
     margin-left: 2em;
+    font-size: 85%;
 }
 
 li.service-twitter {

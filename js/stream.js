@@ -75,7 +75,7 @@ var stream = (function(){
                     body = "<br /><a href='"+entry.url+"'>"+count+" more "+(count==1?'commit':'commits')+" »</a>"
                 }
                 body = ($.map(shas_to_show, function(e) {
-                            var gravatar = "<span title='"+escapeHTML(e[3])+"'><img src='http://www.gravatar.com/avatar/"+hex_md5(e[1])+"?s=140&amp;d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-140.png' alt='' width='16' height='16'></span>"
+                            var gravatar = "<span title='"+escapeHTML(e[3])+"'><img class='textimage' src='http://www.gravatar.com/avatar/"+hex_md5(e[1])+"?s=16&amp;d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-140.png' alt=''></span>"
                             return gravatar + " <a href='"+entry.repository.url+"/commit/"+e[0]+"'><code>" + e[0].substring(0,7) + "</code></a> " + escapeHTML(e[2])
                         })).join("<br />") + body
                 
@@ -153,7 +153,7 @@ var stream = (function(){
             })
 
             $.each(tweet.entities.user_mentions, function(i,entry) {
-                index_map[entry.indices[0]] = [entry.indices[1], function(text) {return "<a title='"+escapeHTML(entry.name)+"' href='http://twitter.com/"+escapeHTML(entry.screen_name)+"'>"+escapeHTML(text)+"</a>"}]
+                index_map[entry.indices[0]] = [entry.indices[1], function(text) {return "<a title='"+escapeHTML(entry.name)+"' href='http://twitter.com/"+escapeHTML(entry.screen_name)+"'><img class='textimage' src='http://img.tweetimag.es/i/"+escapeHTML(entry.screen_name)+"_m' alt='@' />@"+escapeHTML(entry.screen_name)+"</a>"}]
             })
 
             var result = ""

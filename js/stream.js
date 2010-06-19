@@ -182,6 +182,23 @@ var stream = (function(){
             return result
         },
         
+        find_thumbnails: function(tweet) {
+            if (!(tweet.entities)) {
+                return null
+            }
+            
+            result = ""
+            
+            $.each(tweet.entities.urls, function(i,entry) {
+                var match = /^http:\/\/yfrog.com\/([A-Za-z0-9]+)$/.exec(entry.url)
+                if (match) {
+                    result += "<a href='"+entry.url+"'><img src='http://yfrog.com/"+match[1]+".th.jpg' /></a> "
+                }
+            })
+            
+            return (result != "" ? result : null)
+        },
+        
         fetch: function(username) {
             $.getJSON("http://api.twitter.com/1/statuses/user_timeline/"+username+".json?include_entities=true&callback=?", function(data) {
                 $.each(data, function(i,entry) {
@@ -189,7 +206,8 @@ var stream = (function(){
                     result = new Activity({
                         "timestamp": new Date(entry.created_at),
                         "url": "http://twitter.com/"+entry.user.screen_name+"/status/"+entry.id,
-                        "title": stream.twitter.linkify_entities(entry)
+                        "title": stream.twitter.linkify_entities(entry),
+                        "body": stream.twitter.find_thumbnails(entry)
                     })
                     result.service = "twitter"
                     add_stream(result)

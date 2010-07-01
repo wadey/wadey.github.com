@@ -153,7 +153,7 @@ var stream = (function(){
             })
 
             $.each(tweet.entities.user_mentions, function(i,entry) {
-                index_map[entry.indices[0]] = [entry.indices[1], function(text) {return "<a title='"+escapeHTML(entry.name)+"' href='http://twitter.com/"+escapeHTML(entry.screen_name)+"'><img class='textimage' src='http://img.tweetimag.es/i/"+escapeHTML(entry.screen_name)+"_m' alt='@' />@"+escapeHTML(entry.screen_name)+"</a>"}]
+                index_map[entry.indices[0]] = [entry.indices[1], function(text) {return "<a title='"+escapeHTML(entry.name)+"' href='http://twitter.com/"+escapeHTML(entry.screen_name)+"'>@"+escapeHTML(entry.screen_name)+"</a>"}]
             })
 
             var result = ""

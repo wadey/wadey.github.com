@@ -194,6 +194,10 @@ var stream = (function(){
                 if (match) {
                     result += "<a href='"+entry.url+"'><img src='http://yfrog.com/"+match[1]+".th.jpg' /></a> "
                 }
+                match = /^http:\/\/flic.kr\/p\/([A-Za-z0-9]+)$/.exec(entry.url)
+                if (match) {
+                    result += "<a href='"+entry.url+"'><img src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "
+                }
             })
             
             return (result != "" ? result : null)

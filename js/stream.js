@@ -204,7 +204,7 @@ var stream = (function(){
         },
         
         fetch: function(username) {
-            $.getJSON("http://api.twitter.com/1/statuses/user_timeline/"+username+".json?include_entities=true&callback=?", function(data) {
+            $.getJSON("http://api.twitter.com/1/statuses/user_timeline/"+username+".json?include_entities=true&count=42&callback=?", function(data) {
                 $.each(data, function(i,entry) {
                     // console.log(entry)
                     result = new Activity({

@@ -93,6 +93,8 @@ var stream = (function(){
                     return new Activity({"title": "created tag " + entry.payload.object_name + " at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
                 } else if (entry.payload.object == "branch") {
                     return new Activity({"title": "created branch " + entry.payload.object_name + " at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>"})
+                } else if (entry.payload.object == "repository") {
+                    return new Activity({"title": "created repository <a href='"+entry.repository.url+"'>"+entry.repository.name+"</a>"})
                 }
             },
             MemberEvent: function(entry) {
@@ -128,19 +130,23 @@ var stream = (function(){
             $.getJSON("http://github.com/"+username+".json?callback=?", function(data) {
                 $.each(data, function(i,entry) {
                     console.log(entry)
-                    parser = github.parsers[entry.type]
-                    if (parser) {
-                        result = parser(entry)
-                        if (result) {
-                            result.service = "github"
-                            result.timestamp = new Date(entry.created_at)
-                            result.url = result.url || entry.url || "http://github.com/"+username
-                            add_stream(result)
-                        } else {
-                            console.warn("unknown activity", entry)
-                        }
-                    } else {
-                        console.warn("unknown activity", entry)
+                    try {
+                      parser = github.parsers[entry.type]
+                      if (parser) {
+                          result = parser(entry)
+                          if (result) {
+                              result.service = "github"
+                              result.timestamp = new Date(entry.created_at)
+                              result.url = result.url || entry.url || "http://github.com/"+username
+                              add_stream(result)
+                          } else {
+                              console.warn("unknown activity", entry)
+                          }
+                      } else {
+                          console.warn("unknown activity", entry)
+                      }
+                    } catch(err) {
+                      console.error(err);
                     }
                 })
             })

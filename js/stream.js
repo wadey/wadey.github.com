@@ -110,6 +110,18 @@ var stream = (function(){
                     return new Activity({"title": "updated <a href='"+entry.payload.url+"'>"+escapeHTML(entry.payload.name)+"</a>", "url": entry.payload.url, "body": "<pre>"+escapeHTML(entry.payload.snippet)+"</pre>"})
                 }
             },
+            PullRequestEvent: function(entry) {
+                if (entry.payload.action == "opened") {
+                    return new Activity({title: "opened <a href='"+entry.url+"'>Pull Request "+entry.payload.number+"</a> on <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>", url: entry.url})
+                }
+            },
+            DeleteEvent: function(entry) {
+                if (entry.payload.ref_type == "branch") {
+                    return new Activity({title: "deleted branch "+entry.payload.ref+" at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>", url: entry.repository.url})
+                } else if (entry.payload.ref_type == "tag") {
+                    return new Activity({title: "deleted tag "+entry.payload.ref+" at <a href='"+entry.repository.url+"'>"+entry.repository.owner+"/"+entry.repository.name+"</a>", url: entry.repository.url})
+                }
+            }
         },
     
         fetch: function(username) {

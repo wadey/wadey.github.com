@@ -197,7 +197,7 @@ var stream = (function(){
                 result += escapeHTML(tweet.text.substring(last_i, i))
             }
 
-            return result
+            return result.replace('&amp;lt;', '<').replace('&amp;gt;', '>');
         },
         
         find_thumbnails: function(tweet) {

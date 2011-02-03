@@ -42,7 +42,7 @@ var stream = (function(){
         if (activity.body) {
             body = "<p>" + activity.body + "</p>"
         }
-        var item = "<li ts='"+activity.timestamp.getTime()+"' class='service-icon service-"+activity.service+"'>"+activity.title+body+"<a class='time' href='"+activity.url+"'>"+long_date(activity.timestamp)+"</a></li>";
+        var item = $("<li ts='"+activity.timestamp.getTime()+"' class='service-icon service-"+activity.service+"'>"+activity.title+body+"<a class='time' href='"+activity.url+"'>"+long_date(activity.timestamp)+"</a></li>");
         var found = false;
         $("#stream_list .service-icon").each(function(i, e) {
             e = $(e)
@@ -52,6 +52,7 @@ var stream = (function(){
                 return false;
             }
         })
+        activity._item = item
         
         if (!found) {
             $("#stream_list").append(item)
@@ -129,7 +130,7 @@ var stream = (function(){
         fetch: function(username) {
             $.getJSON("http://github.com/"+username+".json?callback=?", function(data) {
                 $.each(data, function(i,entry) {
-                    console.log(entry)
+                    if (window.console) console.log(entry)
                     try {
                       parser = github.parsers[entry.type]
                       if (parser) {
@@ -140,13 +141,13 @@ var stream = (function(){
                               result.url = result.url || entry.url || "http://github.com/"+username
                               add_stream(result)
                           } else {
-                              console.warn("unknown activity", entry)
+                              if (window.console) console.warn("unknown activity", entry)
                           }
                       } else {
-                          console.warn("unknown activity", entry)
+                          if (window.console) console.warn("unknown activity", entry)
                       }
                     } catch(err) {
-                      console.error(err);
+                      if (window.console) console.error(err);
                     }
                 })
             })
@@ -200,7 +201,7 @@ var stream = (function(){
             return result.replace('&amp;lt;', '<').replace('&amp;gt;', '>');
         },
         
-        find_thumbnails: function(tweet) {
+        find_thumbnails: function(tweet, activity) {
             if (!(tweet.entities)) {
                 return null
             }
@@ -216,6 +217,13 @@ var stream = (function(){
                 if (match) {
                     result += "<a href='"+entry.url+"'><img src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "
                 }
+                match = /^http:\/\/instagr\.am\/p\/([A-Za-z0-9_]+)\/?$/.exec(entry.url)
+                if (match) {
+                  result += "<span class='instagram'></span> "
+                    $.getJSON("http://instagr.am/api/v1/oembed/?url="+encodeURIComponent(entry.url)+"&callback=?", function(data) {
+                      activity._item.find('.instagram').html("<a href='"+entry.url+"'><img src='"+data.url+"' style='width: 150px'/></a>")
+                    })
+                }
             })
             
             return (result != "" ? result : null)
@@ -225,13 +233,14 @@ var stream = (function(){
             $.getJSON("http://api.twitter.com/1/statuses/user_timeline/"+username+".json?include_entities=true&count=42&callback=?", function(data) {
                 $.each(data, function(i,entry) {
                     // console.log(entry)
-                    result = new Activity({
+                    var result = new Activity({
                         "timestamp": new Date(entry.created_at),
                         "url": "http://twitter.com/"+entry.user.screen_name+"/status/"+entry.id,
-                        "title": stream.twitter.linkify_entities(entry),
-                        "body": stream.twitter.find_thumbnails(entry)
+                        "title": stream.twitter.linkify_entities(entry)
                     })
+                    result.body = stream.twitter.find_thumbnails(entry, result)
                     result.service = "twitter"
+                    if (window.console) console.log(entry, result)
                     add_stream(result)
                 })
             })

@@ -211,17 +211,17 @@ var stream = (function(){
             $.each(tweet.entities.urls, function(i,entry) {
                 var match = /^http:\/\/yfrog.com\/([A-Za-z0-9]+)$/.exec(entry.url)
                 if (match) {
-                    result += "<a href='"+entry.url+"'><img src='http://yfrog.com/"+match[1]+".th.jpg' /></a> "
+                    result += "<a href='"+entry.url+"'><img class='thumbnail' src='http://yfrog.com/"+match[1]+".th.jpg' /></a> "
                 }
                 match = /^http:\/\/flic.kr\/p\/([A-Za-z0-9]+)$/.exec(entry.url)
                 if (match) {
-                    result += "<a href='"+entry.url+"'><img src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "
+                    result += "<a href='"+entry.url+"'><img class='thumbnail' src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "
                 }
                 match = /^http:\/\/instagr\.am\/p\/([A-Za-z0-9_]+)\/?$/.exec(entry.url)
                 if (match) {
                   result += "<span class='instagram'></span> "
                     $.getJSON("http://instagr.am/api/v1/oembed/?url="+encodeURIComponent(entry.url)+"&callback=?", function(data) {
-                      activity._item.find('.instagram').html("<a href='"+entry.url+"'><img src='"+data.url+"' style='width: 150px'/></a>")
+                      activity._item.find('.instagram').html("<a href='"+entry.url+"'><img class='thumbnail' src='"+data.url+"' style='width: 150px'/></a>")
                     })
                 }
             })

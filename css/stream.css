@@ -40,3 +40,7 @@ a.time {
    height: 1em;
    margin-right: 0.1em;
 }
+
+img.thumbnail {
+    margin: 10px;
+}

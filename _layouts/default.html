@@ -59,7 +59,7 @@
     <!-- http://www.google.com/support/analytics/bin/answer.py?hl=en&answer=55527 -->
     <script type="text/javascript">
       $(document).ready(function() {
-        $("a[href^='http']").click(function(){
+        $("a[href^='http']").live('click', function(){
           try {
             _gat._getTrackerByName()._trackEvent('Outbound Links', this.href);
             setTimeout('document.location = "' + this.href + '"', 100);

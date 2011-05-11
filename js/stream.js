@@ -214,6 +214,10 @@ var stream = (function(){
                 if (match) {
                     result += "<a href='"+url+"'><img class='thumbnail' src='http://yfrog.com/"+match[1]+".th.jpg' /></a> "
                 }
+                match = /^https?:\/\/twitpic\.com\/([A-Za-z0-9]+)$/.exec(url)
+                if (match) {
+                    result += "<a href='"+url+"'><img class='thumbnail' src='http://twitpic.com/show/thumb/"+match[1]+"' /></a> "
+                }
                 match = /^http:\/\/flic.kr\/p\/([A-Za-z0-9]+)$/.exec(url)
                 if (match) {
                     result += "<a href='"+url+"'><img class='thumbnail' src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "

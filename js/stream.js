@@ -218,6 +218,10 @@ var stream = (function(){
                 if (match) {
                     result += "<a href='"+url+"'><img class='thumbnail' src='http://twitpic.com/show/thumb/"+match[1]+"' /></a> "
                 }
+                match = /^https?:\/\/i\.imgur\.com\/([\w]{5})[sl]?.jpg$/.exec(url)
+                if (match) {
+                    result += "<a href='"+url+"'><img class='thumbnail' src='http://i.imgur.com/"+match[1]+"s.jpg' /></a> "
+                }
                 match = /^http:\/\/flic.kr\/p\/([A-Za-z0-9]+)$/.exec(url)
                 if (match) {
                     result += "<a href='"+url+"'><img class='thumbnail' src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "

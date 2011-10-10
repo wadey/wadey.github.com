@@ -226,6 +226,10 @@ var stream = (function(){
                 if (match) {
                     result += "<a href='"+url+"'><img class='thumbnail' src='http://flic.kr/p/img/"+match[1]+"_t.jpg' /></a> "
                 }
+                match = /^http:\/\/360\.io\/([A-Za-z0-9]+)$/.exec(url)
+                if (match) {
+                    result += "<a href='"+url+"'><img class='thumbnail' src='http://api.occipital.com/images/viewer/"+match[1]+"_flat_small.jpg' /></a> "
+                }
                 match = /^http:\/\/instagr\.am\/p\/([A-Za-z0-9_]+)\/?$/.exec(url)
                 if (match) {
                   result += "<span class='instagram'></span> "

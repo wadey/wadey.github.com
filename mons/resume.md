@@ -5,13 +5,38 @@ title: Resume
 
 # Profile #
 
-I started programming when I was 10 years old and I have been addicted ever since. I enjoy architecting and implementing large scale distributed applications. Although I am experienced in front-end programming, my main focus is on the back-end, such as API servers, web server frameworks and background data processors. I also have a strong interest in computer security and use this knowledge to help my team program defensively against attacks.
+I started programming when I was 10 years old and I have been addicted ever since. I enjoy designing and implementing large scale distributed applications. Although I am experienced in front-end programming, my main focus is on the back-end, such as API servers, custom indexes, web server frameworks, and background data processors. I also have a strong interest in computer security and use this knowledge to help my team program defensively against attacks.
 
-I am a programming language junkie with experience in (alphabetically): Assembly (x86, MIPS), BASIC, C, C#, C++, Java, JavaScript, Lisp, Perl, Python, Ruby and Scala. I am not a zealot for any particular language; I like to use the best one for the job.
+I am a programming language junkie with experience in (alphabetically): Assembly (x86, MIPS), BASIC, C, C#, C++, Go, Java, JavaScript, Lisp, Perl, Python, Ruby, and Scala. I am not a zealot for any particular language; I like to use the best one for the job.
 
-When I’m not hacking on code, I enjoy amateur photography, playing guitar and tuning my performance car.
+# Side Projects #
+
+- __faceup.me__ - "Use faceup.me to programatically add awesome mustaches, clown noses, hipster glasses and more to any image." (Node.js, ImageMagick)
+- __twitter.com/taplist__ - Tweets when new beers go on tap at select beer bars in San Francisco. (Python, Scrapy, Beanstalk)
+- __botriot.com__ - Chat bots as a service (for IRC and Campfire). Built during Node Knockout 2 (currently bitrotted, existing accounts work but new signups are broken). (Node.js, MongoDB)
+- __home__ - Home dashboard displayed on wall mounted iPad (renders well on iPhone too). Shows bus times, weather, calendar, and more. To be opensourced soon. (Bootstrap, jQuery)
+
+(personal projects are deployed using Chef.)
 
 # Professional Experience #
+
+## SOFTWARE ENGINEER, BETABLE, SAN FRANCISCO, CA 2013-CURRENT ##
+
+(Resume not up to date. Ask me)
+
+Technologies used: Go, Java, Node.js, Cassandra, Puppet, Kafka, Zookeeper
+
+## SOFTWARE ENGINEER, URBAN AIRSHIP, SAN FRANCISCO, CA 2011-2013 ##
+
+(Resume not up to date. Ask me)
+
+Technologies used: Java, Python, Chef, Cassandra, Kafka, Zookeeper, HBase
+
+## SOFTWARE ENGINEER, SIMPLEGEO, BOULDER, CO / SAN FRANCISCO, CA 2010-2011 ##
+
+(Resume not up to date. Ask me)
+
+Technologies used: Python, Twisted, Java, Node.js, Chef, Cassandra
 
 ## SR. SOFTWARE ENGINEER, AOL, BOULDER, CO 2008-2010 ##
 
@@ -21,7 +46,7 @@ Technologies used: Java, Tomcat, Maven, MySQL, Memcached, Hadoop, Subversion, Gi
 
 ## SOFTWARE ENGINEER, SOCIALTHING, BOULDER, CO 2007-2008 ##
 
-Socialthing was a small startup creating a first-of-its-kind digital life manager. I joined as one of the first hires and quickly became the lead developer on the three person engineering team. I architected a major refactor of the backend feed system, which helped the site scale to a larger user base. With my help in the design and direction of the product, it became one of the leading lifestream aggregation services. As the one man operations team, I configured production and development servers and acted as the primary on-call person to keep the service running 24/7. I was an active participant on the product’s support forums where I communicated directly with users.
+Socialthing was a small startup creating a first-of-its-kind digital life manager. I joined as one of the first hires and quickly became the lead developer on the three person engineering team. I architected a major refactor of the backend feed system, which helped the site scale to a larger user base. With my help in the design and direction of the product, it became one of the leading lifestream aggregation services. As the one man operations team, I configured production and development servers and acted as the primary on-call person to keep the service running 24/7. I was an active participant on the product's support forums where I communicated directly with users.
 
 Technologies used: Ruby, Rails, MySQL, Memcached, AWS, Subversion, Git.
 
@@ -33,7 +58,7 @@ Technologies used: Java, Tomcat, Swing, JSP, Ant, Oracle, MySQL, Subversion.
 
 ## SOFTWARE ENGINEER INTERN, INTEL, COLORADO SPRINGS, CO 2005 ##
 
-As an intern in the automation department, I configured and maintained the Windows terminal servers and developed web applications. I created a web-based firewall log summary viewer for the information security team. I worked with another developer to produce a statistical analysis program that ensured the measured data in the factory fell within the required range.
+As an intern in the automation department, I configured and maintained the Windows terminal servers and developed web applications. I created a web-based firewall log summary viewer for the information security team. I worked with another developer to produce a statistical analysis program that ensured the measured data in the factory fell within the expected ranges.
 
 Technologies used: Perl, Apache HTTPD, C#, MS SQL Server
 

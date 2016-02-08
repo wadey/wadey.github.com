@@ -11,9 +11,7 @@ I am a programming language junkie with experience in (alphabetically): Assembly
 
 # Side Projects #
 
-- __faceup.me__ - "Use faceup.me to programatically add awesome mustaches, clown noses, hipster glasses and more to any image." (Node.js, ImageMagick)
 - __twitter.com/taplist__ - Tweets when new beers go on tap at select beer bars in San Francisco. (Python, Scrapy, Beanstalk)
-- __botriot.com__ - Chat bots as a service (for IRC and Campfire). Built during Node Knockout 2 (currently bitrotted, existing accounts work but new signups are broken). (Node.js, MongoDB)
 - __home__ - Home dashboard displayed on wall mounted iPad (renders well on iPhone too). Shows bus times, weather, calendar, and more. To be opensourced soon. (Bootstrap, jQuery)
 
 (personal projects are deployed using Chef.)
